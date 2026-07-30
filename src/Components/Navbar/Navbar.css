@@ -1,0 +1,12 @@
+ul a {
+    color: rgb(0, 123, 255);
+    padding: 10px 20px;
+    border-radius: 40px;
+    /* position: relative; */
+    transition: 0.3s;
+}
+ul a:hover {
+    color: #D32F2F;;
+    font-size: 15px;
+    box-shadow: 0 0 15px #455A64;
+}

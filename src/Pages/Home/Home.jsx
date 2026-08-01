@@ -1,10 +1,13 @@
+import Guide from "../../Components/Guide/Guide";
 import Hero from "../../Components/Hero/Hero";
+import Thought from "../../Components/Thought/Thought";
 
 const Home = () => {
   return (
-    <div>
-        <Hero></Hero>
-      <h2 className="text-4xl font-bold text-primary">Hello Home</h2>
+    <div className="space-y-10">
+      <Hero></Hero>
+      <Guide></Guide>
+      <Thought></Thought>
     </div>
   );
 };

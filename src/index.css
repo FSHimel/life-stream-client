@@ -1,16 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
-body{
-  font-family: "Lexend", sans-serif;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
 @import "tailwindcss";
-@plugin "daisyui"{
-  themes: light --default
-};
+
+@plugin "daisyui" {
+  themes: light --default;
+}
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
+
   --color-primary: #D32F2F;
   --color-secondary: #1976D2;
+}
+
+body {
+  font-family: "Lexend", sans-serif;
 }

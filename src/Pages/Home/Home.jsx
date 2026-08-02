@@ -6,8 +6,8 @@ const Home = () => {
   return (
     <div className="space-y-10">
       <Hero></Hero>
-      <Guide></Guide>
-      <Thought></Thought>
+      <Guide></Guide> {/* explaining what is this website for */}
+      <Thought></Thought> {/*One person is expressing her thought*/}
     </div>
   );
 };

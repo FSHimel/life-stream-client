@@ -12,7 +12,7 @@ const Navbar = () => {
         <NavLink>About</NavLink>
       </li>
       <li>
-        <NavLink>Donner</NavLink>
+        <NavLink to={"/auth"}>Login</NavLink>
       </li>
     </>
   );
@@ -53,9 +53,11 @@ const Navbar = () => {
           {links}
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
-      </div>
+      <ul className="navbar-end">
+        <li>
+          <NavLink to={"/auth"}>Login</NavLink>
+        </li>
+      </ul>
     </div>
   );
 };

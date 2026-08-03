@@ -14,7 +14,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser } = useAuth();
+  const { registerUser, updateUser } = useAuth();
   const axiosSeccure = useAxiosSeccure();
   const location = useLocation();
   const navigate = useNavigate();
@@ -50,22 +50,30 @@ const Register = () => {
             districtId: selectedDistrict.id,
             district: selectedDistrict.name,
             upazila: data.upazila,
+            status: "active",
+            role: "donor",
           };
 
-          axiosSeccure
-            .post("/users", userInfo)
-            .then((res) => {
-              if (res.data.insertedId) {
-                console.log("User created in the database");
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-          navigate(location?.state || "/");
+          axiosSeccure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("User created in the database");
+            }
+            const userProfile = {
+              displayName: data.name,
+              photoURL: photoURL,
+            };
+            updateUser(userProfile)
+              .then(() => {
+                navigate(location?.state || "/");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          });
         })
+
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data);
         });
     });
   };
@@ -127,21 +135,24 @@ const Register = () => {
           <label className="label font-semibold">Blood Group</label>
 
           <select
+            defaultValue=""
             className="select select-bordered w-full"
-            {...register("bloodGroup")}
+            {...register("bloodGroup", {
+              required: "Blood Group is required",
+            })}
           >
-            <option disabled selected>
+            <option value="" disabled>
               Select Blood Group
             </option>
 
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-            <option>O+</option>
-            <option>O-</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
           </select>
         </div>
 

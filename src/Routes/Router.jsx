@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router";
 import RootLayout from "../Layouts/RootLayout";
 import Home from "../Pages/Home/Home";
 import Auth from "../Pages/Auth/Auth";
+import PrivetRoute from "./PrivetRoute";
+import DashBoardLayout from "../Layouts/DashBoardLayout";
+import Profile from "../Pages/DashBoard/Profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +18,20 @@ export const router = createBrowserRouter([
       {
         path: "/auth",
         Component: Auth,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivetRoute>
+        <DashBoardLayout></DashBoardLayout>
+      </PrivetRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard/profile",
+        Component: Profile,
       },
     ],
   },

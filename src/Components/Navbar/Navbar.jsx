@@ -25,10 +25,7 @@ const Navbar = () => {
         <NavLink>Home</NavLink>
       </li>
       <li>
-        <NavLink>About</NavLink>
-      </li>
-      <li>
-        <NavLink>Donor</NavLink>
+        <NavLink to={'/dashboard'}>Dashboard</NavLink>
       </li>
     </>
   );
@@ -86,7 +83,7 @@ const Navbar = () => {
                 "btn rounded-3xl bg-secondary flex space-x-2 justify-center items-center text-white hover:font-bold cursor-pointer"
               }
             >
-              Login <CiLogin className="text-lg"/>
+              Login <CiLogin className="text-lg" />
             </NavLink>
           </div>
         )}

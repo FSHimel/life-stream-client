@@ -5,6 +5,8 @@ import useAuth from "../../../Hooks/useAuth";
 import axios from "axios";
 import useAxiosSeccure from "../../../Hooks/useAxiosSeccure";
 import { useLocation, useNavigate } from "react-router";
+import { useState } from "react";
+import Loading from "../../Loading/Loading";
 
 const Register = () => {
   const {
@@ -14,6 +16,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const [isRegistering, setIsRegistering] = useState(false);
   const { registerUser, updateUser } = useAuth();
   const axiosSeccure = useAxiosSeccure();
   const location = useLocation();
@@ -26,6 +29,7 @@ const Register = () => {
   );
 
   const handleRegister = (data) => {
+    setIsRegistering(true);
     const profileIMG = data.photo[0];
     registerUser(data.email, data.password).then(() => {
       // prepare form data for ImgBB
@@ -67,16 +71,22 @@ const Register = () => {
                 navigate(location?.state || "/");
               })
               .catch((err) => {
+                setIsRegistering(false);
                 console.log(err);
               });
           });
         })
 
         .catch((err) => {
+          setIsRegistering(false);
           console.log(err.response.data);
         });
     });
   };
+
+  if (isRegistering) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="w-full max-w-xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-8">
       <h2 className="text-4xl font-bold text-center text-secondary">

@@ -7,6 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 import districts from "../../../../public/district.json";
 import upazilas from "../../../../public/upazilas.json";
 import Loading from "../../Loading/Loading";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
@@ -21,7 +23,11 @@ const Profile = () => {
 
   const [editing, setEditing] = useState(false);
 
-  const { data: userProfile, isLoading } = useQuery({
+  const {
+    data: userProfile,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["userProfile", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -44,11 +50,54 @@ const Profile = () => {
   }, [userProfile, reset]);
 
   const handleOnSubmit = (data) => {
-    // console.log(data);
-    const selectedDistrict = districts.find(
-      (district) => district.id === data.district,
-    );
-    // console.log(selectedDistrict);
+    console.log(data);
+    const profileIMG = data.photo[0];
+    if (!profileIMG) {
+      alert("Please select an image");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("image", profileIMG);
+
+    const img_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_PHOTO_HOST_KEY}`;
+
+    axios
+      .post(img_API_URL, formData)
+      .then((res) => {
+        const photoURL = res.data.data.url;
+        const selectedDistrict = districts.find(
+          (district) => district.id === data.district,
+        );
+        console.log(selectedDistrict.name);
+        const updatedUserInfo = {
+          displayName: data.name,
+          photoURL: photoURL,
+          districtId: selectedDistrict.id,
+          district: selectedDistrict.name,
+          upazila: data.upazila,
+          bloodGroup: data.bloodGroup,
+        };
+
+        axiosSecure
+          .patch(`/users/${user?.email}`, updatedUserInfo)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              setEditing(false);
+              Swal.fire({
+                title: "Drag me!",
+                icon: "success",
+                draggable: true,
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   };
 
   if (loading || isLoading) {
@@ -63,14 +112,23 @@ const Profile = () => {
 
           {!editing ? (
             <button
+              type="button"
               className="btn btn-primary"
-              onClick={() => setEditing(true)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setEditing(true);
+              }}
             >
               <FaEdit />
               Edit
             </button>
           ) : (
-            <button className="btn btn-success" form="profileForm">
+            <button
+              type="submit"
+              className="btn btn-success"
+              form="profileForm"
+            >
               <FaSave />
               Save Changes
             </button>

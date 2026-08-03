@@ -14,7 +14,6 @@ const Profile = () => {
   const { register, handleSubmit, reset, watch } = useForm();
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSeccure();
-
   const selectedDistrictId = watch("district");
   const filteredUpazilas = upazilas.filter(
     (upazila) => upazila.district_id === selectedDistrictId,
@@ -81,12 +80,15 @@ const Profile = () => {
         <div className="flex justify-center mb-8">
           <div className="avatar">
             <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img src={userProfile.photoURL} alt="" />
+              <img
+                src={userProfile?.photoURL || "/default-avatar.png"}
+                alt={userProfile?.displayName || "User avatar"}
+              />
             </div>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(handleOnSubmit)}>
+        <form id="profileForm" onSubmit={handleSubmit(handleOnSubmit)}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Name */}
 

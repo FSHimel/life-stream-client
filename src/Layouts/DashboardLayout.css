@@ -1,0 +1,7 @@
+.sl {
+  transition: transform 0.3s ease;
+}
+
+.sl:hover {
+  transform: scale(1.1);
+}

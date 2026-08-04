@@ -1,10 +1,12 @@
 import { Link, Outlet } from "react-router";
 import Logo from "../Components/Logo/Logo";
 import { CgProfile } from "react-icons/cg";
+import { LuHeartHandshake } from "react-icons/lu";
+import "./DashboardLayout.css";
 
 const DashBoardLayout = () => {
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open bg-secondary/10">
       <input
         id="my-drawer-4"
         type="checkbox"
@@ -12,7 +14,7 @@ const DashBoardLayout = () => {
       />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="navbar w-full bg-base-300">
+        <nav className="navbar sticky top-0 z-10 w-full bg-secondary/30 backdrop-blur-lg">
           <label
             htmlFor="my-drawer-4"
             aria-label="open sidebar"
@@ -39,7 +41,9 @@ const DashBoardLayout = () => {
           </Link>
         </nav>
         {/* Page content here */}
-        <Outlet></Outlet>
+        <div>
+          <Outlet></Outlet>
+        </div>
       </div>
 
       <div className="drawer-side is-drawer-close:overflow-visible">
@@ -48,13 +52,13 @@ const DashBoardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-secondary/30 is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <div className="menu w-full grow">
             {/* List item */}
             <li>
               <Link
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right sl"
                 data-tip="Homepage"
                 to={"/dashboard"}
               >
@@ -77,10 +81,23 @@ const DashBoardLayout = () => {
             </li>
 
             {/* My Custom Links */}
-            
+
             <li>
               <Link
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right sl"
+                data-tip="Request A Donation"
+                to={"/dashboard/create-donation-request"}
+              >
+                {/* icon */}
+                <LuHeartHandshake />
+                <span className="is-drawer-close:hidden">
+                  Request A Donation
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right sl"
                 data-tip="Profile"
                 to={"/dashboard/profile"}
               >

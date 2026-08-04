@@ -2,6 +2,7 @@ import axios from "axios";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const axiosSecure = axios.create({
   baseURL: "http://localhost:3000",
@@ -24,7 +25,13 @@ const useAxiosSeccure = () => {
         return response;
       },
       (error) => {
-        console.log(error.response);
+        Swal.fire({
+          position: "top-end",
+          title: `⚠️${error.response.data.message}⚠️`,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+        console.log(error.response.data.message);
         const statusCode = error.response.status;
         if (statusCode === 401 || statusCode === 403) {
           logOut().then(() => {

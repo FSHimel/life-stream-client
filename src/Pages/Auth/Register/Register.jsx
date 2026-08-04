@@ -59,9 +59,9 @@ const Register = () => {
           };
 
           axiosSeccure.post("/users", userInfo).then((res) => {
-            if (res.data.insertedId) {
-              console.log("User created in the database");
-            }
+            // if (res.data.insertedId) {
+            //   console.log("User created in the database");
+            // }
             const userProfile = {
               displayName: data.name,
               photoURL: photoURL,

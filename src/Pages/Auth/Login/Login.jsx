@@ -17,7 +17,9 @@ const Login = () => {
       .then(() => {
         navigate(location?.state || "/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="">

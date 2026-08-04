@@ -50,7 +50,7 @@ const Profile = () => {
   }, [userProfile, reset]);
 
   const handleOnSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const profileIMG = data.photo[0];
     if (!profileIMG) {
       alert("Please select an image");
@@ -68,7 +68,7 @@ const Profile = () => {
         const selectedDistrict = districts.find(
           (district) => district.id === data.district,
         );
-        console.log(selectedDistrict.name);
+        // console.log(selectedDistrict.name);
         const updatedUserInfo = {
           displayName: data.name,
           photoURL: photoURL,
@@ -105,8 +105,8 @@ const Profile = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto">
-      <div className="bg-base-100 shadow-xl rounded-2xl p-8">
+    <div className="max-w-5xl mx-auto my-10">
+      <div className=" bg-secondary/10 shadow-xl rounded-2xl p-8">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold">My Profile</h2>
 

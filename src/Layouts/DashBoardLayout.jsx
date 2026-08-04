@@ -3,6 +3,7 @@ import Logo from "../Components/Logo/Logo";
 import { CgProfile } from "react-icons/cg";
 import { LuHeartHandshake } from "react-icons/lu";
 import "./DashboardLayout.css";
+import { FaHandHoldingHeart } from "react-icons/fa";
 
 const DashBoardLayout = () => {
   return (
@@ -52,7 +53,7 @@ const DashBoardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-secondary/30 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex text-white lg:text-black min-h-full flex-col items-start bg-secondary/30 backdrop-blur-2xl is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <div className="menu w-full grow">
             {/* List item */}
@@ -95,6 +96,21 @@ const DashBoardLayout = () => {
                 </span>
               </Link>
             </li>
+
+            <li>
+              <Link
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right sl"
+                data-tip="My Donation Requests"
+                to={"/dashboard/my-donation-requests"}
+              >
+                {/* icon */}
+                <FaHandHoldingHeart />
+                <span className="is-drawer-close:hidden">
+                  My Donation Requests
+                </span>
+              </Link>
+            </li>
+
             <li>
               <Link
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right sl"

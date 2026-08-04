@@ -58,7 +58,7 @@ const Register = () => {
             role: "donor",
           };
 
-          axiosSeccure.post("/users", userInfo).then((res) => {
+          axiosSeccure.post("/users", userInfo).then(() => {
             // if (res.data.insertedId) {
             //   console.log("User created in the database");
             // }

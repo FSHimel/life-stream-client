@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSeccure from "../../../Hooks/useAxiosSeccure";
 import Swal from "sweetalert2";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const DashboardHome = () => {
   const { user } = useAuth();
   const axiosSeccure = useAxiosSeccure();
+  const navigate = useNavigate();
 
   const { data: myReqs = [], refetch } = useQuery({
     queryKey: ["donationRequests", user?.email],
@@ -194,7 +195,12 @@ const DashboardHome = () => {
 
                     {req.donationStatus === "pending" && (
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center justify-center">
-                        <button className="btn bg-secondary/70 text-white btn-sm">
+                        <button
+                          onClick={() =>
+                            navigate(`/dashboard/edit-request/${req._id}`)
+                          }
+                          className="btn bg-secondary/70 text-white btn-sm"
+                        >
                           Edit
                         </button>
 

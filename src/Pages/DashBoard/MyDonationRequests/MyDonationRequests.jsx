@@ -3,10 +3,12 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSeccure from "../../../Hooks/useAxiosSeccure";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const MyDonationRequests = () => {
   const { user } = useAuth();
   const axiosSeccure = useAxiosSeccure();
+  const navigate = useNavigate();
 
   const [statusFilter, setStatusFilter] = useState("all");
 
@@ -198,7 +200,12 @@ const MyDonationRequests = () => {
 
                     {req.donationStatus === "pending" && (
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center justify-center">
-                        <button className="btn bg-secondary/70 text-white btn-sm">
+                        <button
+                          onClick={() =>
+                            navigate(`/dashboard/edit-request/${req._id}`)
+                          }
+                          className="btn bg-secondary/70 text-white btn-sm"
+                        >
                           Edit
                         </button>
 

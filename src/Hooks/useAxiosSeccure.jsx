@@ -13,10 +13,17 @@ const useAxiosSeccure = () => {
 
   useEffect(() => {
     //req interceptor
-    const reqInterceptor = axiosSecure.interceptors.request.use((config) => {
-      config.headers.Authorization = `Bearer ${user?.accessToken}`;
-      return config;
-    });
+    const reqInterceptor = axiosSecure.interceptors.request.use(
+      async (config) => {
+        const token = await user?.getIdToken();
+
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+
+        return config;
+      },
+    );
 
     //response interceptor
 

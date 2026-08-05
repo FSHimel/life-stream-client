@@ -124,31 +124,29 @@ const DashboardHome = () => {
             {/* head */}
             <thead className="text-center">
               <tr>
-                <th className="border border-gray-300">#</th>
-                <th className="border border-gray-300">Recipient Name</th>
-                <th className="border border-gray-300">Recipient Location</th>
-                <th className="border border-gray-300">Donation Date</th>
-                <th className="border border-gray-300">Donation Time</th>
-                <th className="border border-gray-300">Blood Group</th>
-                <th className="border border-gray-300">Donation Status</th>
-                <th className="border border-gray-300">Actions</th>
-                <th className="border border-gray-300">Donor</th>
+                <th>#</th>
+                <th>Recipient Name</th>
+                <th>Recipient Location</th>
+                <th>Donation Date</th>
+                <th>Donation Time</th>
+                <th>Blood Group</th>
+                <th>Donation Status</th>
+                <th>Actions</th>
+                <th>Donor</th>
               </tr>
             </thead>
             <tbody className="text-center">
               {myReqs.map((req, i) => (
                 <tr key={req._id}>
-                  <td className="border border-gray-300">{i + 1}</td>
-                  <td className="border border-gray-300">
-                    {req.recipientName}
-                  </td>
-                  <td className="border border-gray-300">
+                  <td>{i + 1}</td>
+                  <td>{req.recipientName}</td>
+                  <td>
                     <strong>District:</strong> {req.recipientDistrict},<br />
                     <strong>Upazila:</strong>
                     {req.recipientUpazila}
                   </td>
-                  <td className="border border-gray-300">{req.donationDate}</td>
-                  <td className="border border-gray-300">
+                  <td>{req.donationDate}</td>
+                  <td>
                     {new Date(
                       `1970-01-01T${req.donationTime}`,
                     ).toLocaleTimeString([], {
@@ -157,8 +155,8 @@ const DashboardHome = () => {
                       hour12: true,
                     })}
                   </td>
-                  <td className="border border-gray-300">{req.bloodGroup}</td>
-                  <td className="border border-gray-300">
+                  <td>{req.bloodGroup}</td>
+                  <td>
                     <p
                       className={`font-medium ${
                         req.donationStatus === "pending"
@@ -175,7 +173,7 @@ const DashboardHome = () => {
                       {req.donationStatus}
                     </p>
                   </td>
-                  <td className="border border-gray-300">
+                  <td>
                     {req.donationStatus === "inProgress" && (
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center justify-center">
                         <button
@@ -216,7 +214,7 @@ const DashboardHome = () => {
                       </p>
                     )}
                   </td>
-                  <td className="border border-gray-300">
+                  <td>
                     {req.donationStatus === "pending" ? (
                       <p className="text-gray-500">
                         No one has accepted your request yet.

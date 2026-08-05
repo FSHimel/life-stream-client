@@ -85,9 +85,10 @@ const Profile = () => {
               refetch();
               setEditing(false);
               Swal.fire({
-                title: "Drag me!",
                 icon: "success",
-                draggable: true,
+                title: "Success",
+                timer: 1500,
+                showConfirmButton: false,
               });
             }
           })

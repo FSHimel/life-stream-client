@@ -3,9 +3,27 @@ import Logo from "../Components/Logo/Logo";
 import { CgProfile } from "react-icons/cg";
 import { LuHeartHandshake } from "react-icons/lu";
 import "./DashboardLayout.css";
-import { FaHandHoldingHeart } from "react-icons/fa";
+import { FaHandHoldingHeart, FaUsers } from "react-icons/fa";
+import useAxiosSeccure from "../Hooks/useAxiosSeccure";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../Hooks/useAuth";
+import Loading from "../Pages/Loading/Loading";
 
 const DashBoardLayout = () => {
+  const { user } = useAuth();
+  const axiosSeccure = useAxiosSeccure();
+  const { data: userProfile = [], isLoading: profileLoading } = useQuery({
+    queryKey: ["userProfile", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSeccure.get(`/users/${user.email}`);
+      // console.log(res.data);
+      return res.data;
+    },
+  });
+  if (profileLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="drawer lg:drawer-open bg-secondary/10">
       <input
@@ -110,6 +128,21 @@ const DashBoardLayout = () => {
                 </span>
               </Link>
             </li>
+            {userProfile.role === "admin" && (
+              <li>
+                <Link
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right sl"
+                  data-tip="All Users"
+                  to={"/dashboard/all-users"}
+                >
+                  {/* icon */}
+                  <FaUsers />
+                  <span className="is-drawer-close:hidden">
+                    All Users
+                  </span>
+                </Link>
+              </li>
+            )}
 
             <li>
               <Link

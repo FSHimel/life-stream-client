@@ -4,8 +4,8 @@ import { FaEdit, FaSave } from "react-icons/fa";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSeccure from "../../../Hooks/useAxiosSeccure";
 import { useQuery } from "@tanstack/react-query";
-import districts from "../../../../public/district.json";
-import upazilas from "../../../../public/upazilas.json";
+import districts from "../../../Data/district.json";
+import upazilas from "../../../Data/upazilas.json";
 import Loading from "../../Loading/Loading";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -79,7 +79,7 @@ const Profile = () => {
         };
 
         axiosSecure
-          .patch(`/users/${user?.email}`, updatedUserInfo)
+          .patch(`/users/${user?.email}?`, updatedUserInfo)
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               refetch();

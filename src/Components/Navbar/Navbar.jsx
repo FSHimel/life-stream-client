@@ -24,13 +24,10 @@ const Navbar = () => {
       <li>
         <NavLink>Home</NavLink>
       </li>
-      <li>
-        <NavLink to={'/dashboard'}>Dashboard</NavLink>
-      </li>
     </>
   );
   return (
-    <div className="navbar sticky top-4 z-50 rounded-full mt-4 bg-secondary/10 py-3 px-7 backdrop-blur-lg shadow-md">
+    <div className="navbar sticky top-4 z-50 rounded-full mt-4 bg-secondary/10 py-3 px-5 backdrop-blur-lg shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,7 +49,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 font-bold rounded-box z-1 mt-3 w-52 p-2  shadow-md"
+            className="menu menu-sm dropdown-content bg-blue-100 font-bold rounded-box z-1 mt-3 w-50 p-2  shadow-md"
           >
             {links}
           </ul>
@@ -68,13 +65,33 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button
-            onClick={handleLogOut}
-            className="btn rounded-3xl bg-secondary flex items-center justify-between space-x-2 text-white hover:font-bold cursor-pointer"
-          >
-            <span>Log out</span>
-            <AiOutlineLogout className="text-lg" />
-          </button>
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost bg-secondary/2 rounded-full avatar"
+            >
+              <div className="w-10 md:w-13 lg:w-15 rounded-full border-2 border-green-500 animate-pulse">
+                <img src={user?.photoURL} alt="user" />
+              </div>
+            </div>
+
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-blue-100 font-bold rounded-box z-1 mt-3 w-50 p-2  shadow-md"
+            >
+              <li>
+                <NavLink to={"/dashboard"}>Dashboard</NavLink>
+              </li>
+
+              <li className="mt-2 ">
+                <Link onClick={handleLogOut}>
+                  <span>Log out</span>
+                  <AiOutlineLogout className="text-lg" />
+                </Link>
+              </li>
+            </ul>
+          </div>
         ) : (
           <div>
             <NavLink

@@ -38,7 +38,7 @@ const useAxiosSeccure = () => {
           showConfirmButton: false,
           timer: 2500,
         });
-        console.log(error.response.data.message);
+        console.log(error);
         const statusCode = error.response.status;
         if (statusCode === 401 || statusCode === 403) {
           logOut().then(() => {

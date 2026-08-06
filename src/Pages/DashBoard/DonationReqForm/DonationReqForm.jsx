@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import districts from "../../../../public/district.json";
-import upazilas from "../../../../public/upazilas.json";
+import districts from "../../../Data/district.json";
+import upazilas from "../../../Data/upazilas.json";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSeccure from "../../../Hooks/useAxiosSeccure";

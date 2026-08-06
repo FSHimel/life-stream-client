@@ -300,34 +300,33 @@ const DashboardHome = () => {
         </div>
       )}
 
-      {userProfile?.role === "admin" ||
-        (userProfile?.role === "volunteer" && (
-          <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-10 cally text-center">
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <div className="text-4xl">👥</div>
-                <h2 className="text-gray-500 mt-2">Total Users</h2>
-                <p className="text-4xl font-bold text-primary mt-2">
-                  {users.length}
-                </p>
-              </div>
+      {["admin", "volunteer"].includes(userProfile?.role) && (
+        <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-10 cally text-center">
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <div className="text-4xl">👥</div>
+              <h2 className="text-gray-500 mt-2">Total Users</h2>
+              <p className="text-4xl font-bold text-primary mt-2">
+                {users.length}
+              </p>
+            </div>
 
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <div className="text-4xl">🩸</div>
-                <h2 className="text-gray-500 mt-2">Donation Requests</h2>
-                <p className="text-4xl font-bold text-secondary">
-                  {donationReqs.length}
-                </p>
-              </div>
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <div className="text-4xl">🩸</div>
+              <h2 className="text-gray-500 mt-2">Donation Requests</h2>
+              <p className="text-4xl font-bold text-secondary">
+                {donationReqs.length}
+              </p>
+            </div>
 
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <div className="text-4xl">💰</div>
-                <h2 className="text-gray-500 mt-2">Funding</h2>
-                <p className="text-4xl font-bold">$0.00</p>
-              </div>
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <div className="text-4xl">💰</div>
+              <h2 className="text-gray-500 mt-2">Funding</h2>
+              <p className="text-4xl font-bold">$0.00</p>
             </div>
           </div>
-        ))}
+        </div>
+      )}
     </div>
   );
 };

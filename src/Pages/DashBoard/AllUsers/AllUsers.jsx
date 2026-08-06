@@ -72,7 +72,7 @@ const AllUsers = () => {
       <select
         value={statusFilter}
         onChange={(e) => setStatusFilter(e.target.value)}
-        className="select select-bordered"
+        className="select select-bordered my-5"
       >
         <option value="all">All</option>
         <option value="active">Active</option>
@@ -118,7 +118,9 @@ const AllUsers = () => {
                     className={`badge capitalize ${
                       user?.role === "admin"
                         ? "badge-secondary"
-                        : user?.role === "volunteer"? "badge bg-amber-300" :"badge-primary"
+                        : user?.role === "volunteer"
+                          ? "badge bg-amber-300"
+                          : "badge-primary"
                     }`}
                   >
                     {user?.role}
@@ -180,30 +182,28 @@ const AllUsers = () => {
                         </li>
                       )}
 
-                      {user.role === "donor" &&
-                        (user.status !== "blocked" && (
-                          <li>
-                            <button
-                              onClick={() => handleRole(user._id, "volunteer")}
-                            >
-                              <FaUserCheck />
-                              Make Volunteer
-                            </button>
-                          </li>
-                        ))}
+                      {user.role === "donor" && user.status !== "blocked" && (
+                        <li>
+                          <button
+                            onClick={() => handleRole(user._id, "volunteer")}
+                          >
+                            <FaUserCheck />
+                            Make Volunteer
+                          </button>
+                        </li>
+                      )}
 
-                      {user.role !== "admin" &&
-                        (user.status !== "blocked" && (
-                          <li>
-                            <button
-                              onClick={() => handleRole(user._id, "admin")}
-                              className="text-primary"
-                            >
-                              <FaUserShield />
-                              Make Admin
-                            </button>
-                          </li>
-                        ))}
+                      {user.role !== "admin" && user.status !== "blocked" && (
+                        <li>
+                          <button
+                            onClick={() => handleRole(user._id, "admin")}
+                            className="text-primary"
+                          >
+                            <FaUserShield />
+                            Make Admin
+                          </button>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </td>

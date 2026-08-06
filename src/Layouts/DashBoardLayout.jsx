@@ -3,7 +3,7 @@ import Logo from "../Components/Logo/Logo";
 import { CgProfile } from "react-icons/cg";
 import { LuHeartHandshake } from "react-icons/lu";
 import "./DashboardLayout.css";
-import { FaHandHoldingHeart, FaUsers } from "react-icons/fa";
+import { FaClipboardList, FaHandHoldingHeart, FaUsers } from "react-icons/fa";
 import useAxiosSeccure from "../Hooks/useAxiosSeccure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../Hooks/useAuth";
@@ -128,6 +128,21 @@ const DashBoardLayout = () => {
                 </span>
               </Link>
             </li>
+            {["admin", "volunteer"].includes(userProfile?.role) && (
+              <li>
+                <Link
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right sl"
+                  data-tip="All Donation Requests"
+                  to={"/dashboard/all-blood-donation-requests"}
+                >
+                  {/* icon */}
+                  <FaClipboardList />
+                  <span className="is-drawer-close:hidden">
+                    All Donation Requests
+                  </span>
+                </Link>
+              </li>
+            )}
             {userProfile.role === "admin" && (
               <li>
                 <Link
@@ -137,9 +152,7 @@ const DashBoardLayout = () => {
                 >
                   {/* icon */}
                   <FaUsers />
-                  <span className="is-drawer-close:hidden">
-                    All Users
-                  </span>
+                  <span className="is-drawer-close:hidden">All Users</span>
                 </Link>
               </li>
             )}

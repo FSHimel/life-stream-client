@@ -5,7 +5,7 @@ import useAxiosSeccure from "../Hooks/useAxiosSeccure";
 import Swal from "sweetalert2";
 import { Navigate } from "react-router";
 
-const AdminRoute = ({ children }) => {
+const AdminVolunteerRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const axiosSeccure = useAxiosSeccure();
 
@@ -21,7 +21,7 @@ const AdminRoute = ({ children }) => {
   if (loading || profileLoading) {
     return <Loading></Loading>;
   }
-  if (userProfile.role !== "admin") {
+  if (!["admin", "volunteer"].includes(userProfile?.role)) {
     Swal.fire({
       icon: "error",
       title: "Forbidden Access",
@@ -34,4 +34,4 @@ const AdminRoute = ({ children }) => {
   return children;
 };
 
-export default AdminRoute;
+export default AdminVolunteerRoute;

@@ -28,7 +28,10 @@ const Hero = () => {
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               {/* Donate Button */}
-              <Link className="btn bg-[#C1121F]/80 hover:bg-[#A50F1A] text-white border-none rounded-xl h-14 px-8 shadow-lg shadow-red-300/40 transition-all duration-300">
+              <Link
+                to={"/auth"}
+                className="btn bg-[#C1121F]/80 hover:bg-[#A50F1A] text-white border-none rounded-xl h-14 px-8 shadow-lg shadow-red-300/40 transition-all duration-300"
+              >
                 <BiDonateHeart className="text-xl font-bold" />
                 <span className="font-semibold">Join As Donor</span>
               </Link>

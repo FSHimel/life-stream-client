@@ -46,59 +46,59 @@ const Profile = () => {
       district: district?.id || "",
       upazila: userProfile.upazila,
       bloodGroup: userProfile.bloodGroup,
+      photoURL: userProfile.photoURL,
     });
   }, [userProfile, reset]);
 
-  const handleOnSubmit = (data) => {
-    // console.log(data);
-    const profileIMG = data.photo[0];
-    if (!profileIMG) {
-      alert("Please select an image");
-      return;
+  const handleOnSubmit = async (data) => {
+    try {
+      let photoURL = userProfile.photoURL; // Keep the existing image by default
+
+      const profileIMG = data.photo?.[0];
+
+      // Upload only if a new image was selected
+      if (profileIMG) {
+        const formData = new FormData();
+        formData.append("image", profileIMG);
+
+        const img_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_PHOTO_HOST_KEY}`;
+
+        const imgRes = await axios.post(img_API_URL, formData);
+        photoURL = imgRes.data.data.url;
+      }
+
+      const selectedDistrict = districts.find(
+        (district) => district.id === data.district,
+      );
+
+      const updatedUserInfo = {
+        displayName: data.name,
+        photoURL,
+        districtId: selectedDistrict.id,
+        district: selectedDistrict.name,
+        upazila: data.upazila,
+        bloodGroup: data.bloodGroup,
+      };
+
+      const res = await axiosSecure.patch(
+        `/users/${user.email}`,
+        updatedUserInfo,
+      );
+
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        setEditing(false);
+
+        Swal.fire({
+          icon: "success",
+          title: "Profile updated successfully",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
+    } catch (err) {
+      console.log(err);
     }
-    const formData = new FormData();
-    formData.append("image", profileIMG);
-
-    const img_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_PHOTO_HOST_KEY}`;
-
-    axios
-      .post(img_API_URL, formData)
-      .then((res) => {
-        const photoURL = res.data.data.url;
-        const selectedDistrict = districts.find(
-          (district) => district.id === data.district,
-        );
-        // console.log(selectedDistrict.name);
-        const updatedUserInfo = {
-          displayName: data.name,
-          photoURL: photoURL,
-          districtId: selectedDistrict.id,
-          district: selectedDistrict.name,
-          upazila: data.upazila,
-          bloodGroup: data.bloodGroup,
-        };
-
-        axiosSecure
-          .patch(`/users/${user?.email}?`, updatedUserInfo)
-          .then((res) => {
-            if (res.data.modifiedCount > 0) {
-              refetch();
-              setEditing(false);
-              Swal.fire({
-                icon: "success",
-                title: "Success",
-                timer: 1500,
-                showConfirmButton: false,
-              });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
   };
 
   if (loading || isLoading) {

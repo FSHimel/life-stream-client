@@ -2,13 +2,15 @@ import "./Loading.css";
 
 const Loading = () => {
   return (
-    <section className="dots-container">
-      <div className="dot"></div>
-      <div className="dot"></div>
-      <div className="dot"></div>
-      <div className="dot"></div>
-      <div className="dot"></div>
-    </section>
+    <div className="min-h-screen flex items-center justify-center">
+      <section className="dots-container">
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+      </section>
+    </div>
   );
 };
 

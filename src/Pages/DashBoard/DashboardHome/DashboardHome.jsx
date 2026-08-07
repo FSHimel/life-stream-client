@@ -4,6 +4,17 @@ import useAxiosSeccure from "../../../Hooks/useAxiosSeccure";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router";
 import Loading from "../../Loading/Loading";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  Cell,
+} from "recharts";
 
 const DashboardHome = () => {
   const { user } = useAuth();
@@ -34,8 +45,13 @@ const DashboardHome = () => {
       return res.data;
     },
   });
+
+  const isAdminOrVolunteer =
+    userProfile?.role === "admin" || userProfile?.role === "volunteer";
+
   const { data: users = [], isLoading: usersLoading } = useQuery({
     queryKey: ["users"],
+    enabled: isAdminOrVolunteer,
     queryFn: async () => {
       const res = await axiosSeccure.get(`/users`);
       // console.log(res.data);
@@ -44,6 +60,7 @@ const DashboardHome = () => {
   });
   const { data: donationReqs = [], isLoading: donationReqLoading } = useQuery({
     queryKey: ["donationReqs"],
+    enabled: isAdminOrVolunteer,
     queryFn: async () => {
       const res = await axiosSeccure.get(`/donation-requests`);
       // console.log(res.data);
@@ -134,9 +151,32 @@ const DashboardHome = () => {
     });
   };
 
-  if (reqLoading || profileLoading || usersLoading || donationReqLoading) {
-    return <Loading></Loading>;
+  const analyticsData = [
+    {
+      name: "Users",
+      total: users.length,
+      color: "#2563eb", // Blue
+    },
+    {
+      name: "Requests",
+      total: donationReqs.length,
+      color: "#dc2626", // Red
+    },
+    {
+      name: "Funding",
+      total: 0,
+      color: "#16a34a", // Green
+    },
+  ];
+
+  if (
+    reqLoading ||
+    profileLoading ||
+    (isAdminOrVolunteer && (usersLoading || donationReqLoading))
+  ) {
+    return <Loading />;
   }
+
   return (
     <div className="p-8 min-h-screen">
       <div
@@ -328,6 +368,27 @@ const DashboardHome = () => {
               <h2 className="text-gray-500 mt-2">Funding</h2>
               <p className="text-4xl font-bold">$0.00</p>
             </div>
+          </div>
+          <div className="mt-12 bg-white rounded-3xl shadow-xl p-8 flex flex-col justify-center items-center">
+            <h2 className="text-2xl font-bold text-center mb-8 text-secondary">
+              Dashboard Overview
+            </h2>
+
+            <ResponsiveContainer width="100%" height={350}>
+              <BarChart data={analyticsData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+
+                <Bar dataKey="total" radius={[8, 8, 0, 0]}>
+                  {analyticsData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       )}

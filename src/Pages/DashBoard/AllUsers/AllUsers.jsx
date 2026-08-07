@@ -74,9 +74,24 @@ const AllUsers = () => {
         onChange={(e) => setStatusFilter(e.target.value)}
         className="select select-bordered my-5 bg-blue-50 border border-blue-100 rounded-2xl shadow-lg"
       >
-        <option value="all" className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg">All</option>
-        <option value="active" className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2">Active</option>
-        <option value="blocked" className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2">Blocked</option>
+        <option
+          value="all"
+          className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg"
+        >
+          All
+        </option>
+        <option
+          value="active"
+          className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+        >
+          Active
+        </option>
+        <option
+          value="blocked"
+          className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+        >
+          Blocked
+        </option>
       </select>
       <div className="overflow-x-auto mt-5 bg-blue-50 border border-blue-100 rounded-2xl shadow-lg">
         <table className="table">

@@ -119,11 +119,36 @@ const MyDonationRequests = () => {
           onChange={(e) => setStatusFilter(e.target.value)}
           className="select select-bordered bg-blue-50 border border-blue-100 rounded-2xl shadow-lg"
         >
-          <option value="all" className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg">All</option>
-          <option value="pending" className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2">Pending</option>
-          <option value="inProgress" className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2">In Progress</option>
-          <option value="done" className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2">Done</option>
-          <option value="canceled" className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2">Canceled</option>
+          <option
+            value="all"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg"
+          >
+            All
+          </option>
+          <option
+            value="pending"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+          >
+            Pending
+          </option>
+          <option
+            value="inProgress"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+          >
+            In Progress
+          </option>
+          <option
+            value="done"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+          >
+            Done
+          </option>
+          <option
+            value="canceled"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+          >
+            Canceled
+          </option>
         </select>
         <div className="overflow-x-auto mt-5 bg-blue-50 border border-blue-100 rounded-2xl shadow-lg">
           <table className="table border border-gray-300">
@@ -234,16 +259,13 @@ const MyDonationRequests = () => {
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
-                            <img
-                              src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                              alt="Avatar Tailwind CSS Component"
-                            />
+                            <img src={req.donorProfileImg} alt="donorImg" />
                           </div>
                         </div>
                         <div className="text-start">
-                          <div className="font-bold">Donor Name</div>
+                          <div className="font-bold">{req.donorName}</div>
                           <div className="text-sm opacity-50">
-                            donoremail@gmail.com
+                            {req.donorEmail}
                           </div>
                         </div>
                       </div>

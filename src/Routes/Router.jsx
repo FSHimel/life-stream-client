@@ -13,6 +13,9 @@ import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import AdminVolunteerRoute from "./AdminVolunteerRoute";
 import AllDonationRequests from "../Pages/DashBoard/AllDonationRequests/AllDonationRequests";
+import SearchDonor from "../Pages/SearchDonor/SearchDonor";
+import PendingDonationRequests from "../Pages/PendingDonationRequests/PendingDonationRequests";
+import DonationRequestDetails from "../Pages/DonationRequestDetails/DonationRequestDetails";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +29,26 @@ export const router = createBrowserRouter([
       {
         path: "/auth",
         Component: Auth,
+      },
+      {
+        path: "/search-donor",
+        element: (
+          <PrivetRoute>
+            <SearchDonor></SearchDonor>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/pending-blood-donation-requests",
+        Component: PendingDonationRequests,
+      },
+      {
+        path: "/donation-request-details/:id",
+        element: (
+          <PrivetRoute>
+            <DonationRequestDetails></DonationRequestDetails>
+          </PrivetRoute>
+        ),
       },
     ],
   },

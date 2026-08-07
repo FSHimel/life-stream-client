@@ -11,8 +11,12 @@ const AllDonationRequests = () => {
   const axiosSeccure = useAxiosSeccure();
   const navigate = useNavigate();
 
-  const [statusFilter, setStatusFilter, refetch] = useState("all");
-  const { data: donationReqs = [], isLoading: donationReqLoading } = useQuery({
+  const [statusFilter, setStatusFilter] = useState("all");
+  const {
+    data: donationReqs = [],
+    isLoading: donationReqLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["donationReqs", statusFilter],
     queryFn: async () => {
       const res = await axiosSeccure.get(
@@ -273,16 +277,13 @@ const AllDonationRequests = () => {
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
-                            <img
-                              src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                              alt="Avatar Tailwind CSS Component"
-                            />
+                            <img src={req.donorProfileImg} alt="donorImg" />
                           </div>
                         </div>
                         <div className="text-start">
-                          <div className="font-bold">Donor Name</div>
+                          <div className="font-bold">{req.donorName}</div>
                           <div className="text-sm opacity-50">
-                            donoremail@gmail.com
+                            {req.donorEmail}
                           </div>
                         </div>
                       </div>

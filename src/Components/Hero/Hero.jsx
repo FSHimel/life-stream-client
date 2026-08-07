@@ -37,7 +37,10 @@ const Hero = () => {
               </Link>
 
               {/* Request Button */}
-              <Link className="btn bg-white/10  hover:bg-red-50 text-[#C1121F] border border-[#C1121F]/40 rounded-xl h-14 px-8 transition-all duration-300">
+              <Link
+                to={"/search-donor"}
+                className="btn bg-white/10  hover:bg-red-50 text-[#C1121F] border border-[#C1121F]/40 rounded-xl h-14 px-8 transition-all duration-300"
+              >
                 <BsAsterisk className="text-xl font-bold" />
                 <span className="font-semibold">Search Donor</span>
               </Link>

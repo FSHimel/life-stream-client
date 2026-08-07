@@ -130,15 +130,40 @@ const AllDonationRequests = () => {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="select select-bordered"
+          className="select select-bordered bg-blue-50 border border-blue-100 rounded-2xl shadow-lg"
         >
-          <option value="all">All</option>
-          <option value="pending">Pending</option>
-          <option value="inProgress">In Progress</option>
-          <option value="done">Done</option>
-          <option value="canceled">Canceled</option>
+          <option
+            value="all"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg"
+          >
+            All
+          </option>
+          <option
+            value="pending"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+          >
+            Pending
+          </option>
+          <option
+            value="inProgress"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+          >
+            In Progress
+          </option>
+          <option
+            value="done"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+          >
+            Done
+          </option>
+          <option
+            value="canceled"
+            className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg mt-2"
+          >
+            Canceled
+          </option>
         </select>
-        <div className="overflow-x-auto mt-5">
+        <div className="overflow-x-auto mt-5 bg-blue-50 border border-blue-100 rounded-2xl shadow-lg ">
           <table className="table border border-gray-300">
             {/* head */}
             <thead className="text-center">

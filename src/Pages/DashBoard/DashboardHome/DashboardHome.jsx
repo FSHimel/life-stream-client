@@ -139,7 +139,11 @@ const DashboardHome = () => {
   }
   return (
     <div className="p-8 min-h-screen">
-      <div className="bg-linear-to-r from-secondary to-black rounded-3xl p-8 text-white">
+      <div
+        className="relative overflow-hidden rounded-3xl p-8 text-white
+      bg-linear-to-tr from-slate-900 via-blue-900 to-cyan-600
+      shadow-2xl"
+      >
         <h1 className="text-3xl font-bold text-yellow-500">
           Welcome, {user?.displayName}! 👋
         </h1>
@@ -303,7 +307,7 @@ const DashboardHome = () => {
       {["admin", "volunteer"].includes(userProfile?.role) && (
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-10 cally text-center">
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg p-6">
               <div className="text-4xl">👥</div>
               <h2 className="text-gray-500 mt-2">Total Users</h2>
               <p className="text-4xl font-bold text-primary mt-2">
@@ -311,7 +315,7 @@ const DashboardHome = () => {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg p-6">
               <div className="text-4xl">🩸</div>
               <h2 className="text-gray-500 mt-2">Donation Requests</h2>
               <p className="text-4xl font-bold text-secondary">
@@ -319,7 +323,7 @@ const DashboardHome = () => {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl shadow-lg p-6">
               <div className="text-4xl">💰</div>
               <h2 className="text-gray-500 mt-2">Funding</h2>
               <p className="text-4xl font-bold">$0.00</p>

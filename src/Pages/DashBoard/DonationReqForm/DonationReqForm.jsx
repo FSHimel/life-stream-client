@@ -70,7 +70,7 @@ const DonationReqForm = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto bg-secondary/10 shadow rounded-xl p-8 my-10">
+    <div className="max-w-5xl mx-auto bg-blue-50 border border-blue-100 rounded-2xl shadow-lg p-8 my-10">
       <div className="mb-8 flex flex-col items-center">
         <Logo></Logo>
         <h2 className="text-4xl font-bold text-center text-primary">

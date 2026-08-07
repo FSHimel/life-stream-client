@@ -1,6 +1,7 @@
 import { BiDonateHeart } from "react-icons/bi";
 import heroBG from "../../assets/heroBG.png";
 import { BsAsterisk } from "react-icons/bs";
+import { Link } from "react-router";
 const Hero = () => {
   return (
     <div>
@@ -27,16 +28,16 @@ const Hero = () => {
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               {/* Donate Button */}
-              <button className="btn bg-[#C1121F]/80 hover:bg-[#A50F1A] text-white border-none rounded-xl h-14 px-8 shadow-lg shadow-red-300/40 transition-all duration-300">
+              <Link className="btn bg-[#C1121F]/80 hover:bg-[#A50F1A] text-white border-none rounded-xl h-14 px-8 shadow-lg shadow-red-300/40 transition-all duration-300">
                 <BiDonateHeart className="text-xl font-bold" />
-                <span className="font-semibold">Donate Now</span>
-              </button>
+                <span className="font-semibold">Join As Donor</span>
+              </Link>
 
               {/* Request Button */}
-              <button className="btn bg-white/10  hover:bg-red-50 text-[#C1121F] border border-[#C1121F]/40 rounded-xl h-14 px-8 transition-all duration-300">
+              <Link className="btn bg-white/10  hover:bg-red-50 text-[#C1121F] border border-[#C1121F]/40 rounded-xl h-14 px-8 transition-all duration-300">
                 <BsAsterisk className="text-xl font-bold" />
-                <span className="font-semibold">Request Blood</span>
-              </button>
+                <span className="font-semibold">Search Donor</span>
+              </Link>
             </div>
           </div>
           <div></div>

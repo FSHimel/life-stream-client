@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSeccure from "../../Hooks/useAxiosSeccure";
 import Loading from "../Loading/Loading";
 import { Link } from "react-router";
+import usePublicAxios from "../../Hooks/usePublicAxiios";
 
 const PendingDonationRequests = () => {
-  const axiosSeccure = useAxiosSeccure();
+  const axiosPublicSeccure = usePublicAxios();
   const { data: donationReqs = [], isLoading } = useQuery({
     queryKey: ["pendingDonationReqs"],
     queryFn: async () => {
-      const res = await axiosSeccure.get(`/donation-requests/pending`);
+      const res = await axiosPublicSeccure.get(`/donation-requests/pending`);
       // console.log(res.data);
       return res.data;
     },

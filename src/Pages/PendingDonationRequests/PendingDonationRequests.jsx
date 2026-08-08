@@ -4,14 +4,11 @@ import Loading from "../Loading/Loading";
 import { Link } from "react-router";
 
 const PendingDonationRequests = () => {
-  const status = "pending";
   const axiosSeccure = useAxiosSeccure();
   const { data: donationReqs = [], isLoading } = useQuery({
-    queryKey: ["donationReqs", status],
+    queryKey: ["pendingDonationReqs"],
     queryFn: async () => {
-      const res = await axiosSeccure.get(
-        `/donation-requests/pending?status=${status}`,
-      );
+      const res = await axiosSeccure.get(`/donation-requests/pending`);
       // console.log(res.data);
       return res.data;
     },

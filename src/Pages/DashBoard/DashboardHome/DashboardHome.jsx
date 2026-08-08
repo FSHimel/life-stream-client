@@ -31,7 +31,6 @@ const DashboardHome = () => {
     },
   });
 
-
   const {
     data: myReqs = [],
     refetch,
@@ -313,15 +312,15 @@ const DashboardHome = () => {
                             <div className="avatar">
                               <div className="mask mask-squircle h-12 w-12">
                                 <img
-                                  src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                  src={req.donorProfileImg}
                                   alt="Avatar Tailwind CSS Component"
                                 />
                               </div>
                             </div>
                             <div className="text-start">
-                              <div className="font-bold">Donor Name</div>
+                              <div className="font-bold">{req.donorName}</div>
                               <div className="text-sm opacity-50">
-                                donoremail@gmail.com
+                                {req.donorEmail}
                               </div>
                             </div>
                           </div>

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://life-stream-server-eight.vercel.app/",
 });
 const useAxiosSeccure = () => {
   const { user, logOut } = useAuth();

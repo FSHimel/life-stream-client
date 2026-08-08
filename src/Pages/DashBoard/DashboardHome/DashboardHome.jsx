@@ -21,6 +21,18 @@ const DashboardHome = () => {
   const axiosSeccure = useAxiosSeccure();
   const navigate = useNavigate();
 
+  const { data: userProfile = [], isLoading: profileLoading } = useQuery({
+    queryKey: ["userProfile", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSeccure.get(`/users/${user.email}`);
+      // console.log(res.data);
+      return res.data;
+    },
+  });
+
+  const isDonor = userProfile?.role === "donor";
+
   const {
     data: myReqs = [],
     refetch,
@@ -32,16 +44,6 @@ const DashboardHome = () => {
       const res = await axiosSeccure.get(
         `/donation-requests/${user.email}?limit=3`,
       );
-      return res.data;
-    },
-  });
-
-  const { data: userProfile = [], isLoading: profileLoading } = useQuery({
-    queryKey: ["userProfile", user?.email],
-    enabled: !!user?.email,
-    queryFn: async () => {
-      const res = await axiosSeccure.get(`/users/${user.email}`);
-      // console.log(res.data);
       return res.data;
     },
   });

@@ -32,12 +32,6 @@ const useAxiosSeccure = () => {
         return response;
       },
       (error) => {
-        Swal.fire({
-          position: "top-end",
-          title: `⚠️${error.response.data.message}⚠️`,
-          showConfirmButton: false,
-          timer: 2500,
-        });
         console.log(error);
         const statusCode = error.response.status;
         if (statusCode === 401 || statusCode === 403) {

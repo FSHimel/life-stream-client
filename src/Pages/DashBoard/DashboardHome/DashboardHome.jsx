@@ -31,7 +31,6 @@ const DashboardHome = () => {
     },
   });
 
-  const isDonor = userProfile?.role === "donor";
 
   const {
     data: myReqs = [],

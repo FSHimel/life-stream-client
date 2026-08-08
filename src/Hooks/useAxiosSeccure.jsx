@@ -2,7 +2,6 @@ import axios from "axios";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
-import Swal from "sweetalert2";
 
 const axiosSecure = axios.create({
   baseURL: "https://life-stream-server-eight.vercel.app/",
